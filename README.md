@@ -1,7 +1,7 @@
 Description
 ===========
 
-Installs the Openstack dashboard (codename: horizon) from packages.
+This cookbook installs the OpenStack Dashboard service **Horizon** as part of the OpenStack **Essex** reference deployment Chef for OpenStack. The http://github.com/opscode/openstack-chef-repo contains documentation for using this cookbook in the context of a full OpenStack deployment. Horizon is installed from packages.
 
 http://nova.openstack.org
 
@@ -24,29 +24,23 @@ The following cookbooks are dependencies:
 * apache2
 * database
 * mysql
-
-Resources/Providers
-===================
-
-None
-
+* osops-utils
 
 Recipes
 =======
 
 default
 ----
--includes recipe `server`  
+-includes recipe `server`
 
 server
 ----
--includes recipes `apache2`, `apache2:mod_wsgi`, `apache2:mod_rewrite`, `apache2:mod_ssl`, `mysql:client`  
+-includes recipes `apache2`, `apache2:mod_wsgi`, `apache2:mod_rewrite`, `apache2:mod_ssl`, `mysql:client`
 -installs and configures the openstack dashboard package, sets up the horizon database schema/user, and installs an appropriate apache config/site file
 -uses chef search to discover details of where the database (default mysql) and keystone api are installed so we don't need to explicitly set them in our attributes file for this cookbook
 
 
-
-Attributes 
+Attributes
 ==========
 * `horizon["db"]["name"]` - name of horizon database
 * `horizon["db"]["username"]` - username for horizon database access
@@ -70,15 +64,17 @@ Templates
 License and Author
 ==================
 
-Author:: Justin Shepherd (<justin.shepherd@rackspace.com>)  
-Author:: Jason Cannavale (<jason.cannavale@rackspace.com>)  
-Author:: Ron Pedde (<ron.pedde@rackspace.com>)  
-Author:: Joseph Breu (<joseph.breu@rackspace.com>)  
-Author:: William Kelly (<william.kelly@rackspace.com>)  
-Author:: Darren Birkett (<darren.birkett@rackspace.co.uk>)  
-Author:: Evan Callicoat (<evan.callicoat@rackspace.com>)  
+Author:: Justin Shepherd (<justin.shepherd@rackspace.com>)
+Author:: Jason Cannavale (<jason.cannavale@rackspace.com>)
+Author:: Ron Pedde (<ron.pedde@rackspace.com>)
+Author:: Joseph Breu (<joseph.breu@rackspace.com>)
+Author:: William Kelly (<william.kelly@rackspace.com>)
+Author:: Darren Birkett (<darren.birkett@rackspace.co.uk>)
+Author:: Evan Callicoat (<evan.callicoat@rackspace.com>)
+Author:: Matt Ray (<matt@opscode.com>)
 
-Copyright 2012, Rackspace, Inc.  
+Copyright 2012 Rackspace, Inc.
+Copyright 2012 Opscode, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
